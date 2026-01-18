@@ -2,13 +2,13 @@
 
 import FileSideBar from '@/components/file-navgation/FileSideBar';
 import SearchContainer from '@/components/search/SearchContainer';
-import UserSettings from '@/components/user-navigation/UserSettings';
+import UserPanel from '@/components/user-navigation/UserPanel';
 import { useState } from 'react';
 
 export default function Home() {
-  const [userSettingsOpen, setUserSettingsOpen] = useState(false);
+  const [userPanelOpen, setUserPanelOpen] = useState(false);
   const handleUserIconClick = () => {
-    setUserSettingsOpen((prev) => !prev);
+    setUserPanelOpen((prev) => !prev);
   };
 
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <FileSideBar />
       <SearchContainer onUserIconClick={handleUserIconClick} />
 
-      {userSettingsOpen && <UserSettings />}
+      {userPanelOpen && <UserPanel />}
     </>
   );
 }
