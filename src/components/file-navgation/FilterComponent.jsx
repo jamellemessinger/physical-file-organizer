@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function FilterComponent() {
+export default function FilterComponent({filterType}) {
   return (
     <>
-      <div>FilterComponent</div>
+      <div>{filterType}</div>
       <button>+ or -</button>
     </>
   );

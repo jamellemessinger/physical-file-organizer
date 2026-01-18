@@ -2,5 +2,5 @@ import React from 'react';
 import FilterComponent from './FilterComponent';
 
 export default function LocationFilter() {
-  return <FilterComponent />;
+  return <FilterComponent filterType={'Location'}/>;
 }
