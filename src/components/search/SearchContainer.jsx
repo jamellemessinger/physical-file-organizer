@@ -1,14 +1,14 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import SearchBarButton from './SearchBarButton';
-import ProfileIcon from '../user-navigation/ProfileIcon';
+import UserIcon from '../user-navigation/UserIcon';
 
-export default function SearchContainer() {
+export default function SearchContainer({ onUserIconClick }) {
   return (
     <>
       <SearchBar />
       <SearchBarButton />
-      <ProfileIcon />
+      <UserIcon onClick={onUserIconClick} />
     </>
   );
 }
