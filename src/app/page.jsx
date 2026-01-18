@@ -3,6 +3,7 @@
 import AddFileButton from '@/components/add-file/AddFileButton';
 import AddFilePanel from '@/components/add-file/AddFilePanel';
 import FileSideBar from '@/components/file-navgation/FileSideBar';
+import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
 import UserPanel from '@/components/user-navigation/UserPanel';
 import React, { useState } from 'react';
@@ -22,10 +23,10 @@ export default function Home() {
     <>
       <FileSideBar />
       <SearchContainer onUserIconClick={handleUserIconClick} />
-      <AddFileButton onAddFileButtonClick={handleAddFileButtonClick} />
-
-      {addFilePanelOpen && <AddFilePanel />}
       {userPanelOpen && <UserPanel />}
+      <FileContainer />
+      <AddFileButton onAddFileButtonClick={handleAddFileButtonClick} />
+      {addFilePanelOpen && <AddFilePanel />}
     </>
   );
 }
