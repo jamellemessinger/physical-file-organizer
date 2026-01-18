@@ -1,10 +1,14 @@
-import React from 'react';
+'use client';
 
-export default function FilterComponent({filterType}) {
+import React from 'react';
+import { useState } from 'react';
+
+export default function FilterComponent({ filterType }) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div>{filterType}</div>
-      <button>+ or -</button>
+      <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? '-' : '+'}</button>
     </>
   );
 }

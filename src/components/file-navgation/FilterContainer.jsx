@@ -1,12 +1,10 @@
-import React from 'react';
-import LocationFilter from './LocationFilter';
-import TagFilter from './TagFilter';
+import FilterComponent from './FilterComponent';
 
 export default function FilterContainer() {
   return (
     <>
-      <LocationFilter />
-      <TagFilter />
+      <FilterComponent filterType={'Location'} />
+      <FilterComponent filterType={'Tags'} />
     </>
   );
 }
