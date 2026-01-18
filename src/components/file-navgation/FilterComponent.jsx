@@ -1,14 +1,10 @@
-'use client';
+import React, { useState } from 'react';
 
-import React from 'react';
-import { useState } from 'react';
-
-export default function FilterComponent({ filterType }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function FilterComponent({ onClick, title, isExpanded, name }) {
   return (
     <>
-      <div>{filterType}</div>
-      <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? '-' : '+'}</button>
+      <div>{title}</div>
+      <button onClick={() => onClick(name)}>{isExpanded ? '-' : '+'}</button>
     </>
   );
 }

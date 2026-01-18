@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export default function CollapseSideBarButton() {
-  return (
-    <button>CollapseSideBarButton</button>
-  )
+export default function CollapseSideBarButton({ onClick }) {
+  return <button onClick={() => onClick()}>CollapseSideBarButton</button>;
 }
