@@ -40,3 +40,12 @@ a {
     color-scheme: dark;
   }
 }
+
+.file-row {
+  cursor: pointer;
+}
+
+.file-row.selected {
+  background-color: #717171;
+}
+

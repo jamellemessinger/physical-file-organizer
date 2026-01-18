@@ -1,8 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import FileRow from './FileRow';
 
 export default function FileContainer() {
+  const [selectedFileId, setSelectedFileId] = useState(null);
+  const handleOnSelected = (id) => {
+    selectedFileId === id ? setSelectedFileId(null) : setSelectedFileId(id);
+  };
   const files = [
     {
       id: 1,
@@ -32,7 +37,12 @@ export default function FileContainer() {
 
       {/* File rows */}
       {files.map((file) => (
-        <FileRow key={file.id} file={file} />
+        <FileRow
+          key={file.id}
+          file={file}
+          isSelected={file.id === selectedFileId}
+          onClick={() => handleOnSelected(file.id)}
+        />
       ))}
     </div>
   );
