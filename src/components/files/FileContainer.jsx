@@ -3,27 +3,11 @@
 import { useState } from 'react';
 import FileRow from './FileRow';
 
-export default function FileContainer() {
+export default function FileContainer({ files }) {
   const [selectedFileId, setSelectedFileId] = useState(null);
   const handleOnSelected = (id) => {
     selectedFileId === id ? setSelectedFileId(null) : setSelectedFileId(id);
   };
-  const files = [
-    {
-      id: 1,
-      title: 'Car Insurance Policy',
-      category: 'Insurance',
-      location: 'Folder A / Drawer 2',
-      tags: ['car', 'insurance'],
-    },
-    {
-      id: 2,
-      title: 'Birth Certificate',
-      category: 'Personal',
-      location: 'Safe',
-      tags: ['important'],
-    },
-  ];
 
   return (
     <div id="file-container">

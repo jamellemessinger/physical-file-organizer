@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AddFilePanel() {
+export default function AddFilePanel({ fetchData }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,7 +16,8 @@ export default function AddFilePanel() {
       body: JSON.stringify(fileData),
     });
 
-    if (response.status === 200) {
+    if (response.ok) {
+      fetchData();
       e.target.reset();
     }
   };

@@ -6,7 +6,7 @@ import FileSideBar from '@/components/file-navgation/FileSideBar';
 import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
 import UserPanel from '@/components/user-navigation/UserPanel';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Home() {
   const [userPanelOpen, setUserPanelOpen] = useState(false);
@@ -19,17 +19,33 @@ export default function Home() {
     setAddFilePanelOpen((prev) => !prev);
   };
 
+  const [files, setFiles] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await fetch('api/files');
+      const json = await response.json();
+
+      setFiles(json);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <FileSideBar />
       <SearchContainer onUserIconClick={handleUserIconClick} />
       {userPanelOpen && <UserPanel />}
-      <FileContainer />
+      <FileContainer files={files} />
       <AddFileButton
         isOpen={addFilePanelOpen}
         onAddFileButtonClick={handleAddFileButtonClick}
       />
-      {addFilePanelOpen && <AddFilePanel />}
+      {addFilePanelOpen && <AddFilePanel fetchData={fetchData} />}
     </>
   );
 }
