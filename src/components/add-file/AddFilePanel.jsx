@@ -47,7 +47,11 @@ export default function AddFilePanel({ fetchData }) {
         <input type="text" name="category" required />
         <label htmlFor="location">Location: </label>
         <input type="text" name="location" required />
-        <input type="submit" disabled={isSubmitting} />
+        <input
+          type="submit"
+          disabled={isSubmitting}
+          value={isSubmitting ? 'Submitting...' : 'Add File'}
+        />
       </form>
     </>
   );
