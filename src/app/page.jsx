@@ -25,7 +25,10 @@ export default function Home() {
       <SearchContainer onUserIconClick={handleUserIconClick} />
       {userPanelOpen && <UserPanel />}
       <FileContainer />
-      <AddFileButton isOpen={addFilePanelOpen} onAddFileButtonClick={handleAddFileButtonClick} />
+      <AddFileButton
+        isOpen={addFilePanelOpen}
+        onAddFileButtonClick={handleAddFileButtonClick}
+      />
       {addFilePanelOpen && <AddFilePanel />}
     </>
   );
