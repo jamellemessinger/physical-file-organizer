@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function AddFilePanel({ fetchData }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const form = e.target;
     const fileData = {
       title: form['title'].value,
@@ -10,15 +14,26 @@ export default function AddFilePanel({ fetchData }) {
       location: form['location'].value,
     };
 
-    const response = await fetch('/api/files', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(fileData),
-    });
+    try {
+      // simulate slow request
+      await sleep(2000);
 
-    if (response.ok) {
+      const response = await fetch('/api/files', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fileData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add file');
+      }
+
       fetchData();
-      e.target.reset();
+      form.reset();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -32,7 +47,7 @@ export default function AddFilePanel({ fetchData }) {
         <input type="text" name="category" required />
         <label htmlFor="location">Location: </label>
         <input type="text" name="location" required />
-        <input type="submit" />
+        <input type="submit" disabled={isSubmitting} />
       </form>
     </>
   );
