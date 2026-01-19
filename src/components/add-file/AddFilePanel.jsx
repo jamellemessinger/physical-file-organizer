@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function AddFilePanel() {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const fileData = {
@@ -9,8 +9,16 @@ export default function AddFilePanel() {
       category: form['category'].value,
       location: form['location'].value,
     };
-    console.log(fileData);
-    e.target.reset();
+
+    const response = await fetch('/api/files', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fileData),
+    });
+
+    if (response.status === 200) {
+      e.target.reset();
+    }
   };
 
   return (
