@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function SearchBar() {
-  return (
-    <div>SearchBar</div>
-  )
+  return <input type="text" name="seachBar" placeholder="Seach your files" />;
 }
