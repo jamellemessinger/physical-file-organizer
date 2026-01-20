@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -48,4 +52,3 @@ a {
 .file-row.selected {
   background-color: #717171;
 }
-
