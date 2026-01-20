@@ -12,11 +12,11 @@ export default function FileContainer({ filteredFiles, deleteFile }) {
   return (
     <div id="file-container">
       {/* Header row */}
-      <div className="file-row header">
-        <span>Title</span>
-        <span>Category</span>
-        <span>Location</span>
-        <span>Tags</span>
+      <div className="grid grid-cols-10 gap-5 file-row header p-3">
+        <span className='col-span-4'>Title</span>
+        <span className='col-span-2'>Category</span>
+        <span className='col-span-2'>Location</span>
+        <span className='col-span-2'>Tags</span>
       </div>
 
       {/* File rows */}

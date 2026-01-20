@@ -2,7 +2,7 @@ import FilterComponent from './FilterComponent';
 
 export default function FilterContainer({ onClick, filters }) {
   return (
-    <>
+    <div className='p-3'>
       {Object.entries(filters).map(([key, filter]) => (
         <FilterComponent
           key={key}
@@ -12,6 +12,6 @@ export default function FilterContainer({ onClick, filters }) {
           onClick={onClick}
         />
       ))}
-    </>
+    </div>
   );
 }

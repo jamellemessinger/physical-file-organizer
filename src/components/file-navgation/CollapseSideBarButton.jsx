@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default function CollapseSideBarButton({ onClick }) {
-  return <button onClick={() => onClick()}>CollapseSideBarButton</button>;
+  return (
+    <div className='flex justify-end'>
+      <button onClick={() => onClick()}>=</button>
+    </div>
+  );
 }

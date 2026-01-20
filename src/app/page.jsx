@@ -64,23 +64,25 @@ export default function Home() {
   };
 
   return (
-    <>
+    <main className="flex p-5 h-screen">
       <FileSideBar />
-      <SearchContainer
-        search={setSearchQuery}
-        searchValue={searchQuery}
-        onUserIconClick={handleUserIconClick}
-      />
-      {userPanelOpen && <UserPanel />}
-      <FileContainer
-        filteredFiles={filteredFiles}
-        deleteFile={handleDeleteFile}
-      />
+      <section className='flex flex-col p-5'>
+        <SearchContainer
+          search={setSearchQuery}
+          searchValue={searchQuery}
+          onUserIconClick={handleUserIconClick}
+        />
+        {userPanelOpen && <UserPanel />}
+        <FileContainer
+          filteredFiles={filteredFiles}
+          deleteFile={handleDeleteFile}
+        />
+      </section>
       <AddFileButton
         isOpen={addFilePanelOpen}
         onAddFileButtonClick={handleAddFileButtonClick}
       />
       {addFilePanelOpen && <AddFilePanel fetchData={fetchData} />}
-    </>
+    </main>
   );
 }

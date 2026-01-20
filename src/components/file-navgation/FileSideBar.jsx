@@ -34,7 +34,7 @@ export default function SideBar() {
   };
 
   return (
-    <>
+    <aside className='flex flex-col'>
       <CollapseSideBarButton onClick={handleSideBarOnClick} />
       {sideBarIsOpen && (
         <>
@@ -42,6 +42,6 @@ export default function SideBar() {
           <FilterContainer onClick={handleFilterOnClick} filters={filters} />
         </>
       )}
-    </>
+    </aside>
   );
 }

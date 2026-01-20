@@ -15,10 +15,10 @@ export default function SearchContainer({
   };
 
   return (
-    <>
+    <div className='flex p-5 justify-end gap-3'>
       {showSearchBar && <SearchBar search={search} seachValue={searchValue} />}
       <SearchBarButton isShown={showSearchBar} onClick={handleOnClick} />
       <UserIcon onClick={onUserIconClick} />
-    </>
+    </div>
   );
 }

@@ -1,13 +1,15 @@
 export default function FileRow({ file, isSelected, onClick, deleteFile }) {
   return (
     <div
-      className={`file-row ${isSelected ? 'selected' : ''}`}
+      className={`file-row ${isSelected ? 'bg-gray-300' : ''} grid grid-cols-11 gap-5 px-3 py-1`}
       onClick={onClick}
     >
-      <span>{file.title}</span>
-      <span>{file.category}</span>
-      <span>{file.location}</span>
-      {/* <span>{file.tags.join(', ')}</span> */}
+      <span className="col-span-4">{file.title}</span>
+      <span className="col-span-2">{file.category}</span>
+      <span className="col-span-2">{file.location}</span>
+      <span className="col-span-2">
+        {file.tags ? file.tags.join(', ') : ''}
+      </span>
       {isSelected && (
         <button
           onClick={(e) => {
