@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import FileRow from './FileRow';
 
-export default function FileContainer({ filteredFiles }) {
+export default function FileContainer({ filteredFiles, deleteFile }) {
   const [selectedFileId, setSelectedFileId] = useState(null);
   const handleOnSelected = (id) => {
     selectedFileId === id ? setSelectedFileId(null) : setSelectedFileId(id);
@@ -26,6 +26,7 @@ export default function FileContainer({ filteredFiles }) {
           file={file}
           isSelected={file.id === selectedFileId}
           onClick={() => handleOnSelected(file.id)}
+          deleteFile={deleteFile}
         />
       ))}
     </div>

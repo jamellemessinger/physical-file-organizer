@@ -1,4 +1,4 @@
-export default function FileRow({ file, isSelected, onClick }) {
+export default function FileRow({ file, isSelected, onClick, deleteFile }) {
   return (
     <div
       className={`file-row ${isSelected ? 'selected' : ''}`}
@@ -8,6 +8,16 @@ export default function FileRow({ file, isSelected, onClick }) {
       <span>{file.category}</span>
       <span>{file.location}</span>
       {/* <span>{file.tags.join(', ')}</span> */}
+      {isSelected && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteFile(file.id);
+          }}
+        >
+          X
+        </button>
+      )}
     </div>
   );
 }

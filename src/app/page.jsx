@@ -22,7 +22,7 @@ export default function Home() {
   const [files, setFiles] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await fetch('api/files');
+      const response = await fetch('/api/files');
       const json = await response.json();
 
       setFiles(json);
@@ -37,10 +37,31 @@ export default function Home() {
 
   // Search
   const [searchQuery, setSearchQuery] = useState('');
-
   const filteredFiles = files.filter((file) =>
     file.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
+
+  // Delete File
+  const handleDeleteFile = async (id) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this file?',
+    );
+    if (confirmed) {
+      // user clicked "OK"
+      try {
+        const response = await fetch(`/api/files/${id}`, {
+          method: 'DELETE',
+        });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        fetchData();
+      }
+    } else {
+      // user clicked "Cancel"
+      return;
+    }
+  };
 
   return (
     <>
@@ -51,7 +72,10 @@ export default function Home() {
         onUserIconClick={handleUserIconClick}
       />
       {userPanelOpen && <UserPanel />}
-      <FileContainer filteredFiles={filteredFiles} />
+      <FileContainer
+        filteredFiles={filteredFiles}
+        deleteFile={handleDeleteFile}
+      />
       <AddFileButton
         isOpen={addFilePanelOpen}
         onAddFileButtonClick={handleAddFileButtonClick}
