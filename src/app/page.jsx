@@ -35,12 +35,23 @@ export default function Home() {
     fetchData();
   }, []);
 
+  // Search
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredFiles = files.filter((file) =>
+    file.title.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <>
       <FileSideBar />
-      <SearchContainer onUserIconClick={handleUserIconClick} />
+      <SearchContainer
+        search={setSearchQuery}
+        searchValue={searchQuery}
+        onUserIconClick={handleUserIconClick}
+      />
       {userPanelOpen && <UserPanel />}
-      <FileContainer files={files} />
+      <FileContainer filteredFiles={filteredFiles} />
       <AddFileButton
         isOpen={addFilePanelOpen}
         onAddFileButtonClick={handleAddFileButtonClick}

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import FileRow from './FileRow';
 
-export default function FileContainer({ files }) {
+export default function FileContainer({ filteredFiles }) {
   const [selectedFileId, setSelectedFileId] = useState(null);
   const handleOnSelected = (id) => {
     selectedFileId === id ? setSelectedFileId(null) : setSelectedFileId(id);
@@ -20,7 +20,7 @@ export default function FileContainer({ files }) {
       </div>
 
       {/* File rows */}
-      {files.map((file) => (
+      {filteredFiles.map((file) => (
         <FileRow
           key={file.id}
           file={file}
