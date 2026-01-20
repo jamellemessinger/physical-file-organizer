@@ -42,11 +42,11 @@ export default function AddFilePanel({ fetchData }) {
       <div>AddFilePanel</div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
-        <input type="text" name="title" required />
+        <input type="text" id="title" required />
         <label htmlFor="category">Category: </label>
-        <input type="text" name="category" required />
+        <input type="text" id="category" required />
         <label htmlFor="location">Location: </label>
-        <input type="text" name="location" required />
+        <input type="text" id="location" required />
         <input
           type="submit"
           disabled={isSubmitting}
