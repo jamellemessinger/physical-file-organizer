@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex p-5 h-screen">
+    <main className="flex p-5 h-screen bg-gray-100">
       <FileSideBar />
       <section className="flex flex-col p-5">
         <SearchContainer
