@@ -10,22 +10,23 @@ export async function GET() {
 // POST a new file
 export async function POST(request) {
   const body = await request.json();
-  const { title, category, location, notes } = body;
+  const { title, category, location, tags, notes } = body;
 
   const result = db
     .prepare(
       `
-    INSERT INTO files (title, category, location, notes)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO files (title, category, location, tags, notes)
+    VALUES (?, ?, ?, ?, ?)
   `,
     )
-    .run(title, category, location, notes);
+    .run(title, category, location, tags, notes);
 
   return NextResponse.json({
     id: result.lastInsertRowid,
     title,
     category,
     location,
+    tags,
     notes,
   });
 }
