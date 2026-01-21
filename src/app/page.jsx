@@ -1,6 +1,6 @@
 'use client';
 
-import AddFileButton from '@/components/add-file/AddFileButton';
+import AddFileButtonIcon from '@/components/add-file/AddFileButtonIcon';
 import AddFilePanel from '@/components/add-file/AddFilePanel';
 import FileSideBar from '@/components/file-navgation/FileSideBar';
 import FileContainer from '@/components/files/FileContainer';
@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
-  const handleAddFileButtonClick = () => {
+  const handleAddFileButtonIconClick = () => {
     setAddFilePanelOpen((prev) => !prev);
   };
 
@@ -66,7 +66,7 @@ export default function Home() {
   return (
     <main className="flex p-5 h-screen">
       <FileSideBar />
-      <section className='flex flex-col p-5'>
+      <section className="flex flex-col p-5">
         <SearchContainer
           search={setSearchQuery}
           searchValue={searchQuery}
@@ -78,11 +78,16 @@ export default function Home() {
           deleteFile={handleDeleteFile}
         />
       </section>
-      <AddFileButton
+      <AddFileButtonIcon
         isOpen={addFilePanelOpen}
-        onAddFileButtonClick={handleAddFileButtonClick}
+        onAddFileButtonIconClick={handleAddFileButtonIconClick}
       />
-      {addFilePanelOpen && <AddFilePanel fetchData={fetchData} />}
+      {addFilePanelOpen && (
+        <AddFilePanel
+          fetchData={fetchData}
+          closeAddFileIcon={setAddFilePanelOpen}
+        ></AddFilePanel>
+      )}
     </main>
   );
 }

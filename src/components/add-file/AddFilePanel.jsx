@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import sleep from '../../helper-functions/sleep';
 
-export default function AddFilePanel({ fetchData }) {
+export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dialogRef = useRef(null);
 
@@ -11,6 +11,7 @@ export default function AddFilePanel({ fetchData }) {
 
   const closeModal = () => {
     dialogRef.current.close();
+    closeAddFileIcon();
   };
 
   const handleSubmit = async (e) => {
@@ -78,7 +79,11 @@ export default function AddFilePanel({ fetchData }) {
               {isSubmitting ? 'Submitting...' : 'Add File'}
             </button>
 
-            <button type="button" onClick={closeModal} className='mx-auto my-2 p-2 w-1/4 rounded-md'>
+            <button
+              type="button"
+              onClick={closeModal}
+              className="mx-auto my-2 p-2 w-1/4 rounded-md"
+            >
               Cancel
             </button>
           </form>
