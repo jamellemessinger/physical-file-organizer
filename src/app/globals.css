@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+input {
+  @apply
+  mx-20 mb-5 border border-black rounded-md p-1
+}
+
+label {
+  @apply
+  mx-20 pb-2
+}
