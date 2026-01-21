@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import sleep from '../../helper-functions/sleep';
 
 export default function AddFilePanel({ fetchData }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
