@@ -23,6 +23,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
       title: form['title'].value,
       category: form['category'].value,
       location: form['location'].value,
+      tags: null,
     };
 
     try {

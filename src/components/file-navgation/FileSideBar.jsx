@@ -5,28 +5,7 @@ import AllFilesButton from './AllFilesButton';
 import FilterContainer from './FilterContainer';
 import CollapseSideBarButton from './CollapseSideBarButton';
 
-export default function SideBar() {
-  const [filters, setFilters] = useState({
-    locations: {
-      title: 'Locations',
-      isExpanded: false,
-    },
-    tags: {
-      title: 'Tags',
-      isExpanded: false,
-    },
-  });
-
-  const handleFilterOnClick = (name) => {
-    setFilters((prev) => ({
-      ...prev,
-      [name]: {
-        ...prev[name],
-        isExpanded: !prev[name].isExpanded,
-      },
-    }));
-  };
-
+export default function FileSideBar({ handleFilterOnClick, filters }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
 
   const handleSideBarOnClick = () => {
@@ -34,7 +13,7 @@ export default function SideBar() {
   };
 
   return (
-    <aside className='flex flex-col'>
+    <aside className="flex flex-col">
       <CollapseSideBarButton onClick={handleSideBarOnClick} />
       {sideBarIsOpen && (
         <>

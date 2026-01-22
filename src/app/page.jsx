@@ -6,6 +6,7 @@ import FileSideBar from '@/components/file-navgation/FileSideBar';
 import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
 import UserPanel from '@/components/user-navigation/UserPanel';
+import getFilters from '@/helper-functions/getFilters';
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -30,6 +31,10 @@ export default function Home() {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    setFilters(getFilters(files, filters));
+  }, [files]);
 
   useEffect(() => {
     fetchData();
@@ -62,10 +67,48 @@ export default function Home() {
       return;
     }
   };
+  // SideBar
+  const [filters, setFilters] = useState({
+    category: {
+      title: 'Category',
+      isExpanded: false,
+      items: [],
+    },
+    location: {
+      title: 'Location',
+      isExpanded: false,
+      items: [],
+    },
+    tags: {
+      title: 'Tags',
+      isExpanded: false,
+      items: [],
+    },
+  });
+
+  // const updateFilters = (newFilters) => {
+  //   setFilters((prev) => ({
+  //     ...prev,
+  //     newFilters
+  //   }));
+  // };
+
+  const handleFilterOnClick = (name) => {
+    setFilters((prev) => ({
+      ...prev,
+      [name]: {
+        ...prev[name],
+        isExpanded: !prev[name].isExpanded,
+      },
+    }));
+  };
 
   return (
     <main className="flex p-5 h-screen bg-gray-100">
-      <FileSideBar />
+      <FileSideBar
+        handleFilterOnClick={handleFilterOnClick}
+        filters={filters}
+      />
       <section className="flex flex-col p-5">
         <SearchContainer
           search={setSearchQuery}
