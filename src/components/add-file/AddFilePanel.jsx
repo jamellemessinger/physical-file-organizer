@@ -23,7 +23,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
       title: form['title'].value,
       category: form['category'].value,
       location: form['location'].value,
-      tags: null,
+      tags: form['tags'].value,
     };
 
     try {
@@ -71,6 +71,9 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
 
             <label htmlFor="location">Location:</label>
             <input type="text" id="location" name="location" required />
+
+            <label htmlFor="tags">Tags:</label>
+            <input type="text" id="tags" name="location"/>
 
             <button
               type="submit"
