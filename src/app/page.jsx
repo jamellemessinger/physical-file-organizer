@@ -10,15 +10,6 @@ import getFilters from '@/helper-functions/getFilters';
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
-  // UseEffects
-  useEffect(() => {
-    setFilters(getFilters(files, filters));
-  }, [files]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   // UseStates
   const [userPanelOpen, setUserPanelOpen] = useState(false);
   const handleUserIconClick = () => {
@@ -31,16 +22,6 @@ export default function Home() {
   };
 
   const [files, setFiles] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await fetch('/api/files');
-      const json = await response.json();
-
-      setFiles(json);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -62,7 +43,24 @@ export default function Home() {
     },
   });
 
+  const [selectedFilter, setSelectedFilters] = useState({
+    category: {},
+    location: {},
+    tags: {},
+  });
+
   // Other variables
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/files');
+      const json = await response.json();
+
+      setFiles(json);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const filteredFiles = files.filter((file) =>
     file.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
@@ -99,10 +97,28 @@ export default function Home() {
     }));
   };
 
+  const handleAllFilesButtonOnClick = () => {
+    setSelectedFilters({
+      category: {},
+      location: {},
+      tags: {},
+    });
+  };
+
+  // UseEffects
+  useEffect(() => {
+    setFilters(getFilters(files, filters));
+  }, [files]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <main className="flex p-5 h-screen bg-gray-100">
       <FileSideBar
         handleFilterOnClick={handleFilterOnClick}
+        handleAllFilesButtonOnClick={handleAllFilesButtonOnClick}
         filters={filters}
       />
       <section className="flex flex-col p-5">
