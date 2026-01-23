@@ -7,9 +7,7 @@ export default function FileRow({ file, isSelected, onClick, deleteFile }) {
       <span className="col-span-4">{file.title}</span>
       <span className="col-span-2">{file.category}</span>
       <span className="col-span-2">{file.location}</span>
-      <span className="col-span-2">
-        {file.tags ? file.tags.join(', ') : ''}
-      </span>
+      <span className="col-span-2">{file.tags}</span>
       {isSelected && (
         <button
           onClick={(e) => {
