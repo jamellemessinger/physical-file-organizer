@@ -6,9 +6,9 @@ import FilterContainer from './FilterContainer';
 import CollapseSideBarButton from './CollapseSideBarButton';
 
 export default function FileSideBar({
-  handleFilterOnClick,
+  handleExpandFilter,
   filters,
-  handleAllFilesButtonOnClick,
+  handleClearFilters,
 }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
 
@@ -21,8 +21,8 @@ export default function FileSideBar({
       <CollapseSideBarButton onClick={handleSideBarOnClick} />
       {sideBarIsOpen && (
         <>
-          <AllFilesButton onClick={handleAllFilesButtonOnClick} />
-          <FilterContainer onClick={handleFilterOnClick} filters={filters} />
+          <AllFilesButton handleClearFilters={handleClearFilters} />
+          <FilterContainer handleExpandFilter={handleExpandFilter} filters={filters} />
         </>
       )}
     </aside>

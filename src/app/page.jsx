@@ -87,7 +87,7 @@ export default function Home() {
     }
   };
 
-  const handleFilterOnClick = (name) => {
+  const handleExpandFilter = (name) => {
     setFilters((prev) => ({
       ...prev,
       [name]: {
@@ -97,7 +97,7 @@ export default function Home() {
     }));
   };
 
-  const handleAllFilesButtonOnClick = () => {
+  const handleClearFilters = () => {
     setSelectedFilters({
       category: {},
       location: {},
@@ -117,8 +117,8 @@ export default function Home() {
   return (
     <main className="flex p-5 h-screen bg-gray-100">
       <FileSideBar
-        handleFilterOnClick={handleFilterOnClick}
-        handleAllFilesButtonOnClick={handleAllFilesButtonOnClick}
+        handleExpandFilter={handleExpandFilter}
+        handleClearFilters={handleClearFilters}
         filters={filters}
       />
       <section className="flex flex-col p-5">

@@ -1,6 +1,6 @@
 import FilterComponent from './FilterComponent';
 
-export default function FilterContainer({ onClick, filters }) {
+export default function FilterContainer({ handleExpandFilter, filters }) {
 
   return (
     <div className="p-3">
@@ -10,7 +10,7 @@ export default function FilterContainer({ onClick, filters }) {
           name={key}
           title={filter.title}
           isExpanded={filter.isExpanded}
-          onClick={onClick}
+          onClick={handleExpandFilter}
           items={filter.items}
         />
       ))}
