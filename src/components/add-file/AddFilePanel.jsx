@@ -73,7 +73,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
             <input type="text" id="location" name="location" required />
 
             <label htmlFor="tags">Tags:</label>
-            <input type="text" id="tags" name="location"/>
+            <input type="text" id="tags" name="tags" />
 
             <button
               type="submit"
