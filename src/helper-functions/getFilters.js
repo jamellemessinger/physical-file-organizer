@@ -2,13 +2,6 @@
 
 export default function getFilters(files, filters) {
   let newFilters = { ...filters };
-  // category: {
-  //       title: 'Category',
-  //       isExpanded: false,
-  //       items: [],
-  //     },
-
-  console.log(files)
 
   // Loop trough the files array
   files.forEach((file) => {
