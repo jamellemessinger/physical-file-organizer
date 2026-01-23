@@ -10,6 +10,16 @@ import getFilters from '@/helper-functions/getFilters';
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
+  // UseEffects
+  useEffect(() => {
+    setFilters(getFilters(files, filters));
+  }, [files]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // UseStates
   const [userPanelOpen, setUserPanelOpen] = useState(false);
   const handleUserIconClick = () => {
     setUserPanelOpen((prev) => !prev);
@@ -32,21 +42,32 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    setFilters(getFilters(files, filters));
-  }, [files]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // Search
   const [searchQuery, setSearchQuery] = useState('');
+
+  const [filters, setFilters] = useState({
+    category: {
+      title: 'Category',
+      isExpanded: false,
+      items: [],
+    },
+    location: {
+      title: 'Location',
+      isExpanded: false,
+      items: [],
+    },
+    tags: {
+      title: 'Tags',
+      isExpanded: false,
+      items: [],
+    },
+  });
+
+  // Other variables
   const filteredFiles = files.filter((file) =>
     file.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  // Delete File
+  // Function handlers
   const handleDeleteFile = async (id) => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this file?',
@@ -67,31 +88,6 @@ export default function Home() {
       return;
     }
   };
-  // SideBar
-  const [filters, setFilters] = useState({
-    category: {
-      title: 'Category',
-      isExpanded: false,
-      items: [],
-    },
-    location: {
-      title: 'Location',
-      isExpanded: false,
-      items: [],
-    },
-    tags: {
-      title: 'Tags',
-      isExpanded: false,
-      items: [],
-    },
-  });
-
-  // const updateFilters = (newFilters) => {
-  //   setFilters((prev) => ({
-  //     ...prev,
-  //     newFilters
-  //   }));
-  // };
 
   const handleFilterOnClick = (name) => {
     setFilters((prev) => ({
