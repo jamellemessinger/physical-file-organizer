@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
 export default function FilterComponent({
-  onClick,
+  handleExpandFilter,
   title,
   isExpanded,
   name,
   items,
 }) {
-
-  // console.log(`${title}: items: ${items}`)
   return (
     <div>
       <div className="flex justify-between py-2">
         <div>{title}</div>
-        <button onClick={() => onClick(name)}>{isExpanded ? '-' : '+'}</button>
+        <button onClick={() => handleExpandFilter(name)}>
+          {isExpanded ? '-' : '+'}
+        </button>
       </div>
       {isExpanded && (
         <ul>

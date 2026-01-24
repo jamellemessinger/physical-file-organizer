@@ -6,8 +6,10 @@ import FilterContainer from './FilterContainer';
 import CollapseSideBarButton from './CollapseSideBarButton';
 
 export default function FileSideBar({
+  filterNames,
+  filterExpanded,
+  filterItems,
   handleExpandFilter,
-  filters,
   handleClearFilters,
 }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
@@ -22,7 +24,12 @@ export default function FileSideBar({
       {sideBarIsOpen && (
         <>
           <AllFilesButton handleClearFilters={handleClearFilters} />
-          <FilterContainer handleExpandFilter={handleExpandFilter} filters={filters} />
+          <FilterContainer
+            filterNames={filterNames}
+            filterExpanded={filterExpanded}
+            filterItems={filterItems}
+            handleExpandFilter={handleExpandFilter}
+          />
         </>
       )}
     </aside>

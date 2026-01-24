@@ -1,17 +1,21 @@
 import FilterComponent from './FilterComponent';
 
-export default function FilterContainer({ handleExpandFilter, filters }) {
-
+export default function FilterContainer({
+  filterNames,
+  filterExpanded,
+  filterItems,
+  handleExpandFilter,
+}) {
   return (
     <div className="p-3">
-      {Object.entries(filters).map(([key, filter]) => (
+      {Object.keys(filterNames).map((key) => (
         <FilterComponent
           key={key}
           name={key}
-          title={filter.title}
-          isExpanded={filter.isExpanded}
-          onClick={handleExpandFilter}
-          items={filter.items}
+          title={filterNames[key]}
+          isExpanded={!!filterExpanded[key]?.isExpanded}
+          items={filterItems[key]}
+          handleExpandFilter={handleExpandFilter}
         />
       ))}
     </div>

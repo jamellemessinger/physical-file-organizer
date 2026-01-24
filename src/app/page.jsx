@@ -6,66 +6,14 @@ import FileSideBar from '@/components/file-navgation/FileSideBar';
 import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
 import UserPanel from '@/components/user-navigation/UserPanel';
-import getFilters from '@/helper-functions/getFilters';
+import getFilterItems from '@/helper-functions/getFilterItems';
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
-  // UseStates
-  const [userPanelOpen, setUserPanelOpen] = useState(false);
-  const handleUserIconClick = () => {
-    setUserPanelOpen((prev) => !prev);
-  };
-
-  const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
-  const handleAddFileButtonIconClick = () => {
-    setAddFilePanelOpen((prev) => !prev);
-  };
-
+  // files
   const [files, setFiles] = useState([]);
+  const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const [filters, setFilters] = useState({
-    category: {
-      title: 'Category',
-      isExpanded: false,
-      items: [],
-    },
-    location: {
-      title: 'Location',
-      isExpanded: false,
-      items: [],
-    },
-    tags: {
-      title: 'Tags',
-      isExpanded: false,
-      items: [],
-    },
-  });
-
-  const [selectedFilter, setSelectedFilters] = useState({
-    category: {},
-    location: {},
-    tags: {},
-  });
-
-  // Other variables
-  const fetchData = async () => {
-    try {
-      const response = await fetch('/api/files');
-      const json = await response.json();
-
-      setFiles(json);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  const filteredFiles = files.filter((file) =>
-    file.title.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  // Function handlers
   const handleDeleteFile = async (id) => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this file?',
@@ -87,11 +35,46 @@ export default function Home() {
     }
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/files');
+      const json = await response.json();
+
+      setFiles(json);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const handleAddFileButtonIconClick = () => {
+    setAddFilePanelOpen((prev) => !prev);
+  };
+
+  // filter
+  const filterNames = {
+    category: 'Category',
+    location: 'Location',
+    tags: 'Tags',
+  };
+
+  const [filterExpanded, setFilterExpanded] = useState({
+    category: {
+      isExpanded: false,
+    },
+    location: {
+      isExpanded: false,
+    },
+    tags: {
+      isExpanded: false,
+    },
+  });
+
+  const filterItems = getFilterItems(files);
+
   const handleExpandFilter = (name) => {
-    setFilters((prev) => ({
+    setFilterExpanded((prev) => ({
       ...prev,
       [name]: {
-        ...prev[name],
         isExpanded: !prev[name].isExpanded,
       },
     }));
@@ -105,11 +88,19 @@ export default function Home() {
     });
   };
 
-  // UseEffects
-  useEffect(() => {
-    setFilters(getFilters(files, filters));
-  }, [files]);
+  // search
+  const [searchQuery, setSearchQuery] = useState('');
+  const filteredFiles = files.filter((file) =>
+    file.title.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
+  // user panel
+  const [userPanelOpen, setUserPanelOpen] = useState(false);
+  const handleUserIconClick = () => {
+    setUserPanelOpen((prev) => !prev);
+  };
+
+  // UseEffects
   useEffect(() => {
     fetchData();
   }, []);
@@ -117,9 +108,11 @@ export default function Home() {
   return (
     <main className="flex p-5 h-screen bg-gray-100">
       <FileSideBar
+        filterNames={filterNames}
+        filterExpanded={filterExpanded}
+        filterItems={filterItems}
         handleExpandFilter={handleExpandFilter}
         handleClearFilters={handleClearFilters}
-        filters={filters}
       />
       <section className="flex flex-col p-5">
         <SearchContainer
