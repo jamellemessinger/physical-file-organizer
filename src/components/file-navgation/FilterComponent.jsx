@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 export default function FilterComponent({
-  handleExpandFilter,
   title,
   isExpanded,
   name,
   items,
+  activeItems,
+  handleExpandFilter,
+  handleSelectFilter,
 }) {
   return (
     <div>
@@ -18,7 +20,13 @@ export default function FilterComponent({
       {isExpanded && (
         <ul>
           {items.map((item, key) => (
-            <li key={key}>{item}</li>
+            <li
+              className={`cursor-pointer rounded-full p-2 m-1 text-center hover:bg-gray-300 hover:text-black active:bg-gray-400 active:shadow-md active:transform active:scale-105 ${activeItems.includes(item) ? 'bg-blue-400 text-white border border-black' : 'bg-gray-200'} transition-all duration-150`}
+              key={key}
+              onClick={() => handleSelectFilter(name, item)}
+            >
+              {item}
+            </li>
           ))}
         </ul>
       )}

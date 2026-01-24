@@ -9,8 +9,10 @@ export default function FileSideBar({
   filterNames,
   filterExpanded,
   filterItems,
+  activeItems,
   handleExpandFilter,
   handleClearFilters,
+  handleSelectFilter,
 }) {
   const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
 
@@ -28,7 +30,9 @@ export default function FileSideBar({
             filterNames={filterNames}
             filterExpanded={filterExpanded}
             filterItems={filterItems}
+            activeItems={activeItems}
             handleExpandFilter={handleExpandFilter}
+            handleSelectFilter={handleSelectFilter}
           />
         </>
       )}

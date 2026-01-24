@@ -80,12 +80,35 @@ export default function Home() {
     }));
   };
 
+  const [activeItems, setActiveItems] = useState({
+    category: [],
+    location: [],
+    tags: [],
+  });
+
   const handleClearFilters = () => {
-    setSelectedFilters({
-      category: {},
-      location: {},
-      tags: {},
+    setActiveItems({
+      category: [],
+      location: [],
+      tags: [],
     });
+  };
+
+  const handleSelectFilter = (name, item) => {
+    if (activeItems[name].includes(item)) {
+      const filteredItemList = activeItems[name].filter(
+        (value) => value !== item,
+      );
+      setActiveItems((prev) => ({
+        ...prev,
+        [name]: filteredItemList,
+      }));
+    } else {
+      setActiveItems((prev) => ({
+        ...prev,
+        [name]: [...prev[name], item],
+      }));
+    }
   };
 
   // search
@@ -111,8 +134,10 @@ export default function Home() {
         filterNames={filterNames}
         filterExpanded={filterExpanded}
         filterItems={filterItems}
+        activeItems={activeItems}
         handleExpandFilter={handleExpandFilter}
         handleClearFilters={handleClearFilters}
+        handleSelectFilter={handleSelectFilter}
       />
       <section className="flex flex-col p-5">
         <SearchContainer
