@@ -27,7 +27,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
     };
 
     try {
-      await sleep(2000);
+      // await sleep(2000);
 
       const response = await fetch('/api/files', {
         method: 'POST',

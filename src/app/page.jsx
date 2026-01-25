@@ -7,13 +7,13 @@ import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
 import UserPanel from '@/components/user-navigation/UserPanel';
 import getFilterItems from '@/helper-functions/getFilterItems';
+import filterFiles from '@/helper-functions/filterFiles';
 import React, { useEffect, useState } from 'react';
 
 export default function Home() {
   // files
   const [files, setFiles] = useState([]);
   const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
-
   const handleDeleteFile = async (id) => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this file?',
@@ -34,7 +34,6 @@ export default function Home() {
       return;
     }
   };
-
   const fetchData = async () => {
     try {
       const response = await fetch('/api/files');
@@ -45,7 +44,6 @@ export default function Home() {
       console.log(err.message);
     }
   };
-
   const handleAddFileButtonIconClick = () => {
     setAddFilePanelOpen((prev) => !prev);
   };
@@ -56,7 +54,6 @@ export default function Home() {
     location: 'Location',
     tags: 'Tags',
   };
-
   const [filterExpanded, setFilterExpanded] = useState({
     category: {
       isExpanded: false,
@@ -68,9 +65,7 @@ export default function Home() {
       isExpanded: false,
     },
   });
-
   const filterItems = getFilterItems(files);
-
   const handleExpandFilter = (name) => {
     setFilterExpanded((prev) => ({
       ...prev,
@@ -79,13 +74,11 @@ export default function Home() {
       },
     }));
   };
-
   const [activeItems, setActiveItems] = useState({
     category: [],
     location: [],
     tags: [],
   });
-
   const handleClearFilters = () => {
     setActiveItems({
       category: [],
@@ -93,7 +86,6 @@ export default function Home() {
       tags: [],
     });
   };
-
   const handleSelectFilter = (name, item) => {
     if (activeItems[name].includes(item)) {
       const filteredItemList = activeItems[name].filter(
@@ -113,7 +105,7 @@ export default function Home() {
 
   // search
   const [searchQuery, setSearchQuery] = useState('');
-  const filteredFiles = files.filter((file) =>
+  const filteredFiles = filterFiles(files, activeItems).filter((file) =>
     file.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
