@@ -1,32 +1,41 @@
 export default function getFilterItems(files) {
-  let filterItems = {
+  const filterItems = {
     category: [],
     location: [],
     tags: [],
   };
 
-  if (files[0]) {
-    files.forEach((file) => {
-      for (const key in file) {
-        for (const filter in filterItems) {
-          if (
-            key === filter &&
-            !filterItems[filter].includes(file[key]) &&
-            key !== 'tags'
-          ) {
-            filterItems[filter].push(file[key]);
-          } else if (key === 'tags') {
-            let tags = file[key].split(',').map((tag) => tag.trim());
-            tags.forEach((tag) => {
-              if (!filterItems[key].includes(tag)) {
-                filterItems[key].push(tag);
-              }
-            });
-          }
-        }
+  files.forEach((file) => {
+    // category
+    if (file.category) {
+      const value = file.category.trim().toLowerCase();
+      if (!filterItems.category.includes(value)) {
+        filterItems.category.push(value);
       }
-    });
-  }
+    }
+
+    // location
+    if (file.location) {
+      const value = file.location.trim().toLowerCase();
+      if (!filterItems.location.includes(value)) {
+        filterItems.location.push(value);
+      }
+    }
+
+    // tags
+    if (file.tags) {
+      const tags = file.tags
+        .split(',')
+        .map((tag) => tag.trim().toLowerCase())
+        .filter(Boolean);
+
+      tags.forEach((tag) => {
+        if (!filterItems.tags.includes(tag)) {
+          filterItems.tags.push(tag);
+        }
+      });
+    }
+  });
 
   return filterItems;
 }
