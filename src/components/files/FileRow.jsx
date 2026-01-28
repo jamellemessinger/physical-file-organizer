@@ -1,7 +1,7 @@
 export default function FileRow({ file, isSelected, onClick, deleteFile }) {
   return (
     <div
-      className={`file-row ${isSelected ? 'bg-gray-300' : ''} grid grid-cols-11 gap-5 px-3 py-1`}
+      className={`file-row ${isSelected ? 'bg-gray-300' : ''} grid grid-cols-11 gap-5 px-3 py-1 border`}
       onClick={onClick}
     >
       <span className="col-span-4">{file.title}</span>

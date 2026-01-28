@@ -131,7 +131,7 @@ export default function Home() {
         handleClearFilters={handleClearFilters}
         handleSelectFilter={handleSelectFilter}
       />
-      <section className="flex flex-col p-5">
+      <section className="flex flex-col flex-1 p-5 w-full">
         <SearchContainer
           search={setSearchQuery}
           searchValue={searchQuery}
@@ -139,6 +139,7 @@ export default function Home() {
         />
         {userPanelOpen && <UserPanel />}
         <FileContainer
+          searchQuery={searchQuery}
           filteredFiles={filteredFiles}
           deleteFile={handleDeleteFile}
         />
