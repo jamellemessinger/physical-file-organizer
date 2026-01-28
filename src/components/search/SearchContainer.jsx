@@ -4,6 +4,7 @@ import SearchBarButton from './SearchBarButton';
 import UserIcon from '../user-navigation/UserIcon';
 
 export default function SearchContainer({
+  isLoading,
   search,
   searchValue,
   onUserIconClick,
@@ -15,9 +16,13 @@ export default function SearchContainer({
   };
 
   return (
-    <div className='flex p-5 justify-end gap-3'>
+    <div className="flex p-5 justify-end gap-3">
       {showSearchBar && <SearchBar search={search} seachValue={searchValue} />}
-      <SearchBarButton isShown={showSearchBar} onClick={handleOnClick} />
+      <SearchBarButton
+        isLoading={isLoading}
+        isShown={showSearchBar}
+        onClick={handleOnClick}
+      />
       <UserIcon onClick={onUserIconClick} />
     </div>
   );

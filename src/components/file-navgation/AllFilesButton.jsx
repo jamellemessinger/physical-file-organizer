@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function AllFilesButton({ handleClearFilters }) {
+export default function AllFilesButton({ isLoading, handleClearFilters }) {
   return (
-    <button className="p-5" onClick={handleClearFilters}>
+    <button disabled={isLoading} className="p-5" onClick={handleClearFilters}>
       AllFilesButton
     </button>
   );

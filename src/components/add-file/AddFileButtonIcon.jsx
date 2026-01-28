@@ -1,10 +1,13 @@
 import React from 'react';
 
 export default function AddFileButtonIcon({
+  isLoading,
   isOpen,
   onAddFileButtonIconClick,
 }) {
   return (
-    <button onClick={onAddFileButtonIconClick}>{isOpen ? 'X' : '+'}</button>
+    <button disabled={isLoading} onClick={onAddFileButtonIconClick}>
+      {isOpen ? 'X' : '+'}
+    </button>
   );
 }

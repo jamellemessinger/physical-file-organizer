@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function SearchBarButton({ isShown, onClick }) {
+export default function SearchBarButton({ isLoading, isShown, onClick }) {
   return (
-    <button onClick={onClick}>{isShown ? 'X' : 'Q'}</button>
+    <button disabled={isLoading} onClick={onClick}>
+      {isShown ? 'X' : 'Q'}
+    </button>
   );
 }

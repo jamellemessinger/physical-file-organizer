@@ -127,6 +127,7 @@ export default function Home() {
   return (
     <main className="flex p-5 h-screen bg-gray-100">
       <FileSideBar
+        isLoading={isLoading}
         filterNames={filterNames}
         filterExpanded={filterExpanded}
         filterItems={filterItems}
@@ -137,6 +138,7 @@ export default function Home() {
       />
       <section className="flex flex-col flex-1 p-5 w-full">
         <SearchContainer
+          isLoading={isLoading}
           search={setSearchQuery}
           searchValue={searchQuery}
           onUserIconClick={handleUserIconClick}
@@ -150,6 +152,7 @@ export default function Home() {
         />
       </section>
       <AddFileButtonIcon
+        isLoading={isLoading}
         isOpen={addFilePanelOpen}
         onAddFileButtonIconClick={handleAddFileButtonIconClick}
       />

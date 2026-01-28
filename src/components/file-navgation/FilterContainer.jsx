@@ -1,6 +1,7 @@
 import FilterComponent from './FilterComponent';
 
 export default function FilterContainer({
+  isLoading,
   filterNames,
   filterExpanded,
   filterItems,
@@ -12,6 +13,7 @@ export default function FilterContainer({
     <div className="p-3">
       {Object.keys(filterNames).map((key) => (
         <FilterComponent
+          isLoading={isLoading}
           key={key}
           name={key}
           title={filterNames[key]}

@@ -6,6 +6,7 @@ import FilterContainer from './FilterContainer';
 import CollapseSideBarButton from './CollapseSideBarButton';
 
 export default function FileSideBar({
+  isLoading,
   filterNames,
   filterExpanded,
   filterItems,
@@ -25,8 +26,12 @@ export default function FileSideBar({
       <CollapseSideBarButton onClick={handleSideBarOnClick} />
       {sideBarIsOpen && (
         <>
-          <AllFilesButton handleClearFilters={handleClearFilters} />
+          <AllFilesButton
+            isLoading={isLoading}
+            handleClearFilters={handleClearFilters}
+          />
           <FilterContainer
+            isLoading={isLoading}
             filterNames={filterNames}
             filterExpanded={filterExpanded}
             filterItems={filterItems}
