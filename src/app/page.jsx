@@ -14,6 +14,20 @@ export default function Home() {
   // files
   const [files, setFiles] = useState([]);
   const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/files');
+      const json = await response.json();
+
+      setFiles(json);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err.message);
+    }
+  };
   const handleDeleteFile = async (id) => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this file?',
@@ -32,16 +46,6 @@ export default function Home() {
     } else {
       // user clicked "Cancel"
       return;
-    }
-  };
-  const fetchData = async () => {
-    try {
-      const response = await fetch('/api/files');
-      const json = await response.json();
-
-      setFiles(json);
-    } catch (err) {
-      console.log(err.message);
     }
   };
   const handleAddFileButtonIconClick = () => {
@@ -141,6 +145,7 @@ export default function Home() {
         <FileContainer
           searchQuery={searchQuery}
           filteredFiles={filteredFiles}
+          isLoading={isLoading}
           deleteFile={handleDeleteFile}
         />
       </section>
