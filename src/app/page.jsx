@@ -15,6 +15,7 @@ export default function Home() {
   const [files, setFiles] = useState([]);
   const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const filesEmpty = files.length === 0;
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -139,8 +140,8 @@ export default function Home() {
       <section className="flex flex-col flex-1 p-5 w-full">
         <SearchContainer
           isLoading={isLoading}
-          search={setSearchQuery}
           searchValue={searchQuery}
+          search={setSearchQuery}
           onUserIconClick={handleUserIconClick}
         />
         {userPanelOpen && <UserPanel />}
@@ -148,6 +149,7 @@ export default function Home() {
           searchQuery={searchQuery}
           filteredFiles={filteredFiles}
           isLoading={isLoading}
+          filesEmpty={filesEmpty}
           deleteFile={handleDeleteFile}
         />
       </section>
