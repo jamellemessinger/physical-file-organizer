@@ -52,7 +52,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
   return (
     <>
       {/* This replaces your old AddFile button handler */}
-      <button onClick={openModal}>Add File</button>
+      <button className='p-2 text-xl text-center align-middle' onClick={openModal}>Add File</button>
 
       {/* dialog needs traditional inline styling, tailwind breaks defualt browers styling for dialog */}
       <dialog

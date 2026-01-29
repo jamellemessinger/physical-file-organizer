@@ -6,8 +6,8 @@ export default function AddFileButtonIcon({
   onAddFileButtonIconClick,
 }) {
   return (
-    <button disabled={isLoading} onClick={onAddFileButtonIconClick}>
-      {isOpen ? 'X' : '+'}
+    <button className='text-5xl' disabled={isLoading} onClick={onAddFileButtonIconClick}>
+      {isOpen ? 'x' : '+'}
     </button>
   );
 }
