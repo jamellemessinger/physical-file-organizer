@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import FileRow from './FileRow';
+import FileHeader from './FileHeader';
 
 export default function FileContainer({
   searchQuery,
@@ -17,62 +18,36 @@ export default function FileContainer({
 
   if (isLoading) {
     return (
-      <div className="file-container flex flex-col flex-1 w-full border border-black">
-        {/* Header row */}
-        <div className="grid grid-cols-11 gap-5 file-row header p-3 text-xl">
-          <span className="col-span-4">Title</span>
-          <span className="col-span-2">Category</span>
-          <span className="col-span-2">Location</span>
-          <span className="col-span-2">Tags</span>
-        </div>
-
-        {/* File rows */}
-        <div className="loading flex flex-col flex-1 justify-center text-center italic text-5xl text-gray-300">
-          Loading...
-        </div>
+      <div className="file-container">
+        <FileHeader />
+        <p className="file-container-alt-text">Loading...</p>
       </div>
     );
   }
 
   if (filesEmpty) {
     return (
-      <div className="file-container flex flex-col flex-1 w-full border border-black">
-        {/* Header row */}
-        <div className="grid grid-cols-11 gap-5 file-row header p-3 text-xl">
-          <span className="col-span-4">Title</span>
-          <span className="col-span-2">Category</span>
-          <span className="col-span-2">Location</span>
-          <span className="col-span-2">Tags</span>
-        </div>
-
-        {/* File rows */}
-        <div className="files-empty p-1 flex flex-col flex-1 justify-center text-center italic text-5xl text-gray-300">
+      <div className="file-container">
+        <FileHeader />
+        <p className="file-container-alt-text">
           No Files Saved.
           <br />
           <br />
           Click the "+" in the Bottom-Right Corner to Add a New File.
-        </div>
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="file-container flex flex-col flex-1 w-full border border-black">
-      {/* Header row */}
-      <div className="grid grid-cols-11 gap-5 file-row header p-3 text-xl">
-        <span className="col-span-4">Title</span>
-        <span className="col-span-2">Category</span>
-        <span className="col-span-2">Location</span>
-        <span className="col-span-2">Tags</span>
-      </div>
+    <div className="file-container">
+      <FileHeader />
 
       {/* File rows */}
       {filteredFiles.length === 0 &&
       searchQuery.length > 0 &&
       isLoading === false ? (
-        <div className="flex flex-col flex-1 justify-center text-center italic text-5xl text-gray-300">
-          No Files Found!
-        </div>
+        <p className="file-container-alt-text">No Files Found!</p>
       ) : (
         filteredFiles.map((file) => (
           <FileRow

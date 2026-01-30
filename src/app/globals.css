@@ -13,3 +13,11 @@ label {
 button {
   @apply flex justify-center items-center cursor-pointer shadow-sm  hover:bg-gray-300 hover:text-black hover:shadow-md active:bg-gray-400 active:shadow-md active:transform active:scale-95 bg-gray-200 transition-all duration-150 p-1;
 }
+
+.file-container {
+  @apply flex flex-col flex-1 w-full border border-black;
+}
+
+.file-container-alt-text {
+  @apply flex flex-col flex-1 justify-center text-center italic text-5xl text-gray-300;
+}
