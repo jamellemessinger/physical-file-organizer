@@ -52,7 +52,12 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
   return (
     <>
       {/* This replaces your old AddFile button handler */}
-      <button className='p-2 text-xl text-center align-middle' onClick={openModal}>Add File</button>
+      <button
+        className="p-2 text-xl text-center align-middle"
+        onClick={openModal}
+      >
+        Add File
+      </button>
 
       {/* dialog needs traditional inline styling, tailwind breaks defualt browers styling for dialog */}
       <dialog
@@ -64,16 +69,34 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
 
           <form onSubmit={handleSubmit} className="flex flex-col">
             <label htmlFor="title">Title:</label>
-            <input type="text" id="title" name="title" required />
+            <input
+              className="add-file"
+              type="text"
+              id="title"
+              name="title"
+              required
+            />
 
             <label htmlFor="category">Category:</label>
-            <input type="text" id="category" name="category" required />
+            <input
+              className="add-file"
+              type="text"
+              id="category"
+              name="category"
+              required
+            />
 
             <label htmlFor="location">Location:</label>
-            <input type="text" id="location" name="location" required />
+            <input
+              className="add-file"
+              type="text"
+              id="location"
+              name="location"
+              required
+            />
 
             <label htmlFor="tags">Tags:</label>
-            <input type="text" id="tags" name="tags" />
+            <input className="add-file" type="text" id="tags" name="tags" />
 
             <button
               type="submit"

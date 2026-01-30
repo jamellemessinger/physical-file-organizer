@@ -16,14 +16,14 @@ export default function SearchContainer({
   };
 
   return (
-    <div className="flex p-5 justify-end gap-3">
+    <div className="flex p-5 justify-end gap-3 content-center">
       {showSearchBar && <SearchBar search={search} seachValue={searchValue} />}
       <SearchBarButton
         isLoading={isLoading}
         isShown={showSearchBar}
         onClick={handleOnClick}
       />
-      <UserIcon onClick={onUserIconClick} />
+      {/* <UserIcon onClick={onUserIconClick} /> */}
     </div>
   );
 }
