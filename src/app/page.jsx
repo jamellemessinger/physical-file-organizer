@@ -126,7 +126,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex p-5 h-screen bg-gray-100">
+    <main className="flex h-screen bg-gray-100">
       <FileSideBar
         isLoading={isLoading}
         filterNames={filterNames}
@@ -137,7 +137,7 @@ export default function Home() {
         handleClearFilters={handleClearFilters}
         handleSelectFilter={handleSelectFilter}
       />
-      <section className="flex flex-col flex-1 p-5 w-full">
+      <section className="flex flex-col flex-1 w-full p-5">
         <SearchContainer
           isLoading={isLoading}
           searchValue={searchQuery}

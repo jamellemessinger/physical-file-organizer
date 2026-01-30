@@ -53,7 +53,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
     <>
       {/* This replaces your old AddFile button handler */}
       <button
-        className="p-2 text-xl text-center align-middle"
+        className="p-2 text-xl text-center align-middle absolute bottom-20 right-7 rounded-lg"
         onClick={openModal}
       >
         Add File

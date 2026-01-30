@@ -14,7 +14,11 @@ export default function FilterComponent({
     <div>
       <div className="flex justify-between py-2">
         <div>{title}</div>
-        <button disabled={isLoading} onClick={() => handleExpandFilter(name)}>
+        <button
+          className="rounded-full size-6 pb-2"
+          disabled={isLoading}
+          onClick={() => handleExpandFilter(name)}
+        >
           {isExpanded ? '-' : '+'}
         </button>
       </div>

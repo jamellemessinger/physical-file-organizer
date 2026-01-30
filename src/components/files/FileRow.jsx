@@ -10,6 +10,7 @@ export default function FileRow({ file, isSelected, onClick, deleteFile }) {
       <span className="col-span-2">{file.tags}</span>
       {isSelected && (
         <button
+          className="rounded-lg w-10"
           onClick={(e) => {
             e.stopPropagation();
             deleteFile(file.id);

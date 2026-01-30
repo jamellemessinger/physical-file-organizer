@@ -22,8 +22,8 @@ export default function FileSideBar({
   };
 
   return (
-    <aside className="flex flex-col">
-      <CollapseSideBarButton onClick={handleSideBarOnClick} />
+    <aside className="flex flex-col pt-3">
+      <CollapseSideBarButton handleSideBarOnClick={handleSideBarOnClick} />
       {sideBarIsOpen && (
         <>
           <AllFilesButton
