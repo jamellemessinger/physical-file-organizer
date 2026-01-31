@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
+export default function AddFileAction({ fetchData, closeAddFileIcon }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dialogRef = useRef(null);
 
@@ -26,8 +26,6 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
     };
 
     try {
-      // await sleep(2000);
-
       const response = await fetch('/api/files', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -63,7 +61,7 @@ export default function AddFilePanel({ fetchData, closeAddFileIcon }) {
         style={{ width: '75vw', maxWidth: '700px', borderRadius: '1rem' }}
       >
         <div className="modal-container flex flex-col p-5 ">
-          <h2 className="text-3xl text-center pb-5">Add File</h2>
+          <h2 className="text-3xl text-center pb-5">Add a new File</h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col">
             <label htmlFor="title">Title:</label>

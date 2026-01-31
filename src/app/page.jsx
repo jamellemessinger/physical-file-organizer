@@ -1,7 +1,7 @@
 'use client';
 
-import AddFileButtonIcon from '@/components/add-file/AddFileButtonIcon';
-import AddFilePanel from '@/components/add-file/AddFilePanel';
+import FloatingActionIcon from '@/components/actions/FloatingActionIcon';
+import AddFileAction from '@/components/actions/AddFileAction';
 import FileSideBar from '@/components/file-navgation/FileSideBar';
 import FileContainer from '@/components/files/FileContainer';
 import SearchContainer from '@/components/search/SearchContainer';
@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
 export default function Home() {
   // files
   const [files, setFiles] = useState([]);
-  const [addFilePanelOpen, setAddFilePanelOpen] = useState(false);
+  const [addFileActionModalOpen, setAddFileActionModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const filesEmpty = files.length === 0;
   const fetchData = async () => {
@@ -49,8 +49,8 @@ export default function Home() {
       return;
     }
   };
-  const handleAddFileButtonIconClick = () => {
-    setAddFilePanelOpen((prev) => !prev);
+  const handleFloatingActionIconClick = () => {
+    setAddFileActionModalOpen((prev) => !prev);
   };
 
   // filter
@@ -153,16 +153,16 @@ export default function Home() {
           deleteFile={handleDeleteFile}
         />
       </section>
-      <AddFileButtonIcon
+      <FloatingActionIcon
         isLoading={isLoading}
-        isOpen={addFilePanelOpen}
-        onAddFileButtonIconClick={handleAddFileButtonIconClick}
+        isOpen={addFileActionModalOpen}
+        onFloatingActionIconClick={handleFloatingActionIconClick}
       />
-      {addFilePanelOpen && (
-        <AddFilePanel
+      {addFileActionModalOpen && (
+        <AddFileAction
           fetchData={fetchData}
-          closeAddFileIcon={setAddFilePanelOpen}
-        ></AddFilePanel>
+          closeAddFileIcon={setAddFileActionModalOpen}
+        ></AddFileAction>
       )}
     </main>
   );
