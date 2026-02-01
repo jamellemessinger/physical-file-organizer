@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Physical File Organizer (MVP)
 
-## Getting Started
+A simple web app to digitally organize and filter physical files by category, location, and tags.
 
-First, run the development server:
+This project was built as a **portfolio MVP** with a strong focus on clean component design, predictable UI behavior, and readable code.
+
+---
+
+## ✨ Features
+
+- Add new files through a modal form
+- Filter files by category, location, and tags
+- Expandable / collapsible filter groups
+- Loading and disabled states to prevent duplicate actions
+- Clean, accessible UI using semantic HTML
+
+---
+
+## 🧠 Design Decisions
+
+- **MVP-first approach**: Features were implemented end-to-end before cleanup or refactoring.
+- **Component responsibility**: Components are split by _reason to change_, not size.
+- **Semantic HTML**: Native elements like `<dialog>` and `<button>` are used for accessibility.
+- **UI safety**: Interactive elements are disabled during loading and submit states to prevent inconsistent UI behavior.
+
+---
+
+## 🧱 Project Structure (High Level)
+
+- Feature-based components (filters, add-file flow)
+- Shared UI logic kept minimal
+- No over-abstraction or premature reuse
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your browser at the local development URL shown in the terminal.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔮 Future Improvements
 
-## Learn More
+- Edit existing files
+- Persist filters in local storage
+- Keyboard navigation improvements
+- Server-side validation and error handling
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📌 Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project intentionally avoids over-engineering. The goal was to demonstrate sound architectural judgment, clean UI logic, and readable React code rather than exhaustive features.
